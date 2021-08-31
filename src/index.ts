@@ -1,19 +1,6 @@
-import { configure, getLogger } from 'log4js';
+import { iCloudAPIController } from './controllers';
+import { Service, iCloudAPIService } from './services';
 
-configure({
-  appenders: {
-    console: {
-      type: 'console',
-    },
-  },
-  categories: {
-    default: {
-      appenders: ['console'],
-      level: 'info',
-    },
-  },
-});
+const service: Service = new iCloudAPIService();
 
-const logger = getLogger('icloud-api');
-
-logger.info('Hello icloud-api.');
+iCloudAPIController.start(service, 3000);
