@@ -1,6 +1,7 @@
 export class Constants {
   public static readonly LOGIN_ENDPOINT = 'https://setup.icloud.com/setup/ws/1/accountLogin';
   public static readonly LOGOUT_ENDPOINT = 'https://setup.icloud.com/setup/ws/1/logout';
+  public static readonly START_UP_ENDPOINT = 'https://p42-remindersws.icloud.com/rd/startup';
 
   public static readonly HTTP_HEADER_ORIGIN = 'https://www.icloud.com';
   public static readonly HTTP_HEADER_REFERER = 'https://www.icloud.com/';
