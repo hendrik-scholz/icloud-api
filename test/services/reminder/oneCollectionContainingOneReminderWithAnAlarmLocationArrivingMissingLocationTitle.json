@@ -1,0 +1,69 @@
+{
+    "Collections": [
+        {
+            "title": "Reminders V1.0.0",
+            "guid": "00000000-0000-0000-0000-000000000001",
+            "order": 2,
+            "color": "#000000",
+            "enabled": true,
+            "ctag": "ctag",
+            "createdDate": [
+                20210625,
+                2021,
+                6,
+                25,
+                19,
+                11,
+                1151
+            ],
+            "isFamily": false,
+            "completedCount": 0,
+            "shouldShowJunkUIWhenAppropriate": false
+        }
+    ],
+    "Reminders": [
+        {
+            "guid": "10000000-0000-0000-0000-000000000000",
+            "pGuid": "00000000-0000-0000-0000-000000000001",
+            "etag": "kqd7txte",
+            "lastModifiedDate": [
+                20210626,
+                2021,
+                6,
+                26,
+                3,
+                42,
+                222
+            ],
+            "createdDate": [
+                20210626,
+                2021,
+                6,
+                26,
+                3,
+                40,
+                220
+            ],
+            "createdDateExtended": 646371637,
+            "order": 646371633,
+            "title": "Reminder #1",
+            "dueDateIsAllDay": true,
+            "startDateIsAllDay": true,
+            "alarms": [
+                {
+                    "messageType": "message",
+                    "pGuid": "10000000-0000-0000-0000-000000000000",
+                    "guid": "00000000-1000-0000-0000-000000000000",
+                    "isLocationBased": true,
+                    "structuredLocation": {
+                        "address": "Robson St",
+                        "latitude": "49.277600",
+                        "longitude": "-123.114031",
+                        "radius": "306.1846019059115"
+                    },
+                    "proximity": "ARRIVE"
+                }
+            ]
+        }
+    ]
+}

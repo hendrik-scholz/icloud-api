@@ -1,0 +1,29 @@
+[{
+  "id": "00000000-0000-0000-0000-000000000001",
+  "name": "Reminders V1.0.0",
+  "reminders": [{
+    "title": "Reminder #1",
+    "description": "Lorem ipsum dolor sit amet.",
+    "priority": null,
+    "locationName": null,
+    "address": null,
+    "latitude": null,
+    "longitude": null,
+    "radius": null,
+    "proximity": null,
+    "alarm": null,
+    "completed": false
+  }, {
+    "title": "Reminder #2",
+    "description": "Sed euismod mi eu nunc bibendum, sit amet iaculis arcu aliquet.",
+    "priority": null,
+    "locationName": null,
+    "address": null,
+    "latitude": null,
+    "longitude": null,
+    "radius": null,
+    "proximity": null,
+    "alarm": null,
+    "completed": false
+  }]
+}]

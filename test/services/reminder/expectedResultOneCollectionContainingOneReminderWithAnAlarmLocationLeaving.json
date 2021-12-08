@@ -1,0 +1,17 @@
+[{
+  "id": "00000000-0000-0000-0000-000000000001",
+  "name": "Reminders V1.0.0",
+  "reminders": [{
+    "title": "Reminder #1",
+    "description": null,
+    "priority": null,
+    "locationName": "Water St",
+    "address": null,
+    "latitude": 49.283400,
+    "longitude": -123.104168,
+    "radius": 502.9178403721307,
+    "proximity": "DEPART",
+    "alarm": null,
+    "completed": false
+  }]
+}]

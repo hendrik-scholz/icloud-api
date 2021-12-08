@@ -1,0 +1,25 @@
+{
+    "Collections": [
+        {
+            "title": "Reminders V1.0.0",
+            "guid": "00000000-0000-0000-0000-000000000001",
+            "order": 2,
+            "color": "#000000",
+            "enabled": true,
+            "ctag": "ctag",
+            "createdDate": [
+                20210625,
+                2021,
+                6,
+                25,
+                19,
+                11,
+                1151
+            ],
+            "isFamily": false,
+            "completedCount": 0,
+            "shouldShowJunkUIWhenAppropriate": false
+        }
+    ],
+    "Reminders": []
+}

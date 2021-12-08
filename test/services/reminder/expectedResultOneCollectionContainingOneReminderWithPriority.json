@@ -1,0 +1,17 @@
+[{
+  "id": "00000000-0000-0000-0000-000000000001",
+  "name": "Reminders V1.0.0",
+  "reminders": [{
+    "title": "Priority high",
+    "description": null,
+    "priority": 1,
+    "locationName": null,
+    "address": null,
+    "latitude": null,
+    "longitude": null,
+    "radius": null,
+    "proximity": null,
+    "alarm": null,
+    "completed": false
+  }]
+}]

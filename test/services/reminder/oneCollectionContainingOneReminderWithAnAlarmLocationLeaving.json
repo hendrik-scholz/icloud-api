@@ -1,0 +1,70 @@
+{
+    "Collections": [
+        {
+            "title": "Reminders V1.0.0",
+            "guid": "00000000-0000-0000-0000-000000000001",
+            "order": 2,
+            "color": "#000000",
+            "enabled": true,
+            "ctag": "ctag",
+            "createdDate": [
+                20210625,
+                2021,
+                6,
+                25,
+                19,
+                11,
+                1151
+            ],
+            "isFamily": false,
+            "completedCount": 0,
+            "shouldShowJunkUIWhenAppropriate": false
+        }
+    ],
+    "Reminders": [
+        {
+            "guid": "10000000-0000-0000-0000-000000000000",
+            "pGuid": "00000000-0000-0000-0000-000000000001",
+            "etag": "kqd7txte",
+            "lastModifiedDate": [
+                20210626,
+                2021,
+                6,
+                26,
+                3,
+                42,
+                222
+            ],
+            "createdDate": [
+                20210626,
+                2021,
+                6,
+                26,
+                3,
+                40,
+                220
+            ],
+            "createdDateExtended": 646371637,
+            "order": 646371633,
+            "title": "Reminder #1",
+            "dueDateIsAllDay": true,
+            "startDateIsAllDay": true,
+            "alarms": [
+                {
+                    "messageType": "message",
+                    "pGuid": "C4E58521-93AE-4852-8D17-862EA6CCEB40",
+                    "guid": "B10EB1CB-BD3D-4251-864E-1474276EBCFF",
+                    "isLocationBased": true,
+                    "structuredLocation": {
+                        "address": "Water St",
+                        "title": "Water St",
+                        "latitude": "49.283400",
+                        "longitude": "-123.104168",
+                        "radius": "502.9178403721307"
+                    },
+                    "proximity": "DEPART"
+                }
+            ]
+        }
+    ]
+}
