@@ -1,4 +1,8 @@
 export class Constants {
+  public static readonly DEFAULT_RADIX = 10;
+
+  public static readonly DEFAULT_PORT = 3000;
+
   public static readonly LOGIN_ENDPOINT = 'https://setup.icloud.com/setup/ws/1/accountLogin';
   public static readonly LOGOUT_ENDPOINT = 'https://setup.icloud.com/setup/ws/1/logout';
   public static readonly START_UP_ENDPOINT = 'https://p42-remindersws.icloud.com/rd/startup';
