@@ -1,9 +1,11 @@
+import { List } from '../types';
+
 export interface Service {
-  getIsalive(): Promise<void>;
+  isAlive(): Promise<void>;
 
-  getIshealthy(): Promise<void>;
+  isHealthy(username: string, password: string): Promise<void>;
 
-  getRemindersLists(): Promise<void>;
+  getRemindersLists(username: string, password: string): Promise<Array<List>>;
 
   getRemindersListsList(): Promise<void>;
 

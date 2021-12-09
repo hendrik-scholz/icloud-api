@@ -1,2 +1,2 @@
-export { Service } from './Service';
-export { iCloudAPIService } from './iCloudAPIService';
+export { Service } from './service';
+export { ICloudAPIService } from './iCloudAPIService';
