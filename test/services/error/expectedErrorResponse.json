@@ -1,0 +1,12 @@
+{
+  "errors": [
+      {
+          "status": "400",
+          "source": {
+              "pointer": "/ishealthy"
+          },
+          "title": "Missing credentials.",
+          "detail": "Header X-APPLE-ID and / or X-PASSWORD is missing."
+      }
+  ]
+}

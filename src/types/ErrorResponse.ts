@@ -1,3 +1,5 @@
+import { Error } from '.';
+
 export interface ErrorResponse {
-  errors: any;
+  errors: Array<Error>;
 }
