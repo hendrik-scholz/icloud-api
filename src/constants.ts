@@ -7,4 +7,10 @@ export class Constants {
   public static readonly HTTP_HEADER_REFERER = 'https://www.icloud.com/';
   public static readonly HTTP_HEADER_SET_COOKIE = 'set-cookie';
   public static readonly HTTP_HEADER_X_APPLE = 'X-APPLE';
+  public static readonly HTTP_HEADER_APPLE_ID = 'X-APPLE-ID';
+  public static readonly HTTP_HEADER_PASSWORD = 'X-PASSWORD';
+
+  public static readonly HTTP_STATUS_NO_CONTENT = 204;
+  public static readonly HTTP_STATUS_BAD_REQUEST = 400;
+  public static readonly HTTP_STATUS_INTERNAL_SERVER_ERROR = 500;
 }

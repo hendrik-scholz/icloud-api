@@ -1,1 +1,1 @@
-export { iCloudAPIController } from './iCloudAPIController';
+export { ICloudAPIController } from './iCloudAPIController';
