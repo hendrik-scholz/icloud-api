@@ -1,138 +1,1030 @@
 {
-  "info": {
-    "_postman_id": "00000000-0000-0000-0000-000000000000",
-    "name": "iCloud API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
-  },
-  "item": [{
-      "name": "/isalive",
-      "request": {
-        "method": "GET",
-        "header": [],
-        "url": {
-          "raw": "{{baseUrl}}/isalive",
-          "host": [
-            "{{baseUrl}}"
-          ],
-          "path": [
-            "/isalive"
-          ]
-        }
-      },
-      "response": []
-    }, {
-      "name": "/ishealthy",
-      "request": {
-        "method": "GET",
-        "header": [],
-        "url": {
-          "raw": "{{baseUrl}}/ishealthy",
-          "host": [
-            "{{baseUrl}}"
-          ],
-          "path": [
-            "/ishealthy"
-          ]
-        }
-      },
-      "response": []
-    }, {
-      "name": "/reminders/lists",
-      "request": {
-        "method": "GET",
-        "header": [],
-        "url": {
-          "raw": "{{baseUrl}}/reminders/lists",
-          "host": [
-            "{{baseUrl}}"
-          ],
-          "path": [
-            "/reminders/lists"
-          ]
-        }
-      },
-      "response": []
-    }, {
-      "name": "/reminders/lists/{{list}}",
-      "request": {
-        "method": "GET",
-        "header": [],
-        "url": {
-          "raw": "{{baseUrl}}/reminders/lists/{{list}}",
-          "host": [
-            "{{baseUrl}}"
-          ],
-          "path": [
-            "/reminders/lists/{{list}}"
-          ]
-        }
-      },
-      "response": []
-    }, {
-      "name": "/reminders/lists/{{list}}",
-      "request": {
-        "method": "POST",
-        "header": [],
-        "url": {
-          "raw": "{{baseUrl}}/reminders/lists/{{list}}",
-          "host": [
-            "{{baseUrl}}"
-          ],
-          "path": [
-            "/reminders/lists/{{list}}"
-          ]
-        }
-      },
-      "response": []
-    }, {
-      "name": "/reminders/lists/{{list}}/{{id}}",
-      "request": {
-        "method": "PUT",
-        "header": [],
-        "url": {
-          "raw": "{{baseUrl}}/reminders/lists/{{list}}/{{id}}",
-          "host": [
-            "{{baseUrl}}"
-          ],
-          "path": [
-            "/reminders/lists/{{list}}/{{id}}"
-          ]
-        }
-      },
-      "response": []
-    }, {
-      "name": "/reminders/lists/{{list}}/{{id}}",
-      "request": {
-        "method": "PATCH",
-        "header": [],
-        "url": {
-          "raw": "{{baseUrl}}/reminders/lists/{{list}}/{{id}}",
-          "host": [
-            "{{baseUrl}}"
-          ],
-          "path": [
-            "/reminders/lists/{{list}}/{{id}}"
-          ]
-        }
-      },
-      "response": []
-    }, {
-      "name": "/reminders/lists/{{list}}/{{id}}",
-      "request": {
-        "method": "DELETE",
-        "header": [],
-        "url": {
-          "raw": "{{baseUrl}}/reminders/lists/{{list}}/{{id}}",
-          "host": [
-            "{{baseUrl}}"
-          ],
-          "path": [
-            "/reminders/lists/{{list}}/{{id}}"
-          ]
-        }
-      },
-      "response": []
-    }
-
-  ]
+	"info": {
+		"_postman_id": "44b86d10-723f-4325-911f-ee423315a4d0",
+		"name": "iCloud API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "isAlive",
+			"item": [
+				{
+					"name": "/isalive",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 204\", function () {",
+									"    pm.response.to.have.status(204);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/isalive",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"isalive"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "isHealthy",
+			"item": [
+				{
+					"name": "/ishealthy when correct X-APPLE-ID and X-PASSWORD are given",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 204\", function () {",
+									"    pm.response.to.have.status(204);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-APPLE-ID",
+								"value": "{{appleId}}",
+								"type": "text"
+							},
+							{
+								"key": "X-PASSWORD",
+								"value": "{{password}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/ishealthy",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"ishealthy"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/ishealthy when invalid X-APPLE-ID and X-PASSWORD are given",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 500\", function () {",
+									"    pm.response.to.have.status(500);",
+									"});",
+									"",
+									"const jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Payload contains error array with one item\", function () {",
+									"    pm.expect(jsonData.errors).to.be.an('array');",
+									"    pm.expect(jsonData.errors.length).to.equal(1);",
+									"});",
+									"",
+									"const firstError = jsonData.errors[0];",
+									"",
+									"pm.test(\"Error status of first error is '500'\", function () {",
+									"    pm.expect(firstError.status).to.equal('500');",
+									"});",
+									"",
+									"pm.test(\"Error source of first error is '/ishealthy'\", function () {",
+									"    pm.expect(firstError.source.pointer).to.equal('/ishealthy');",
+									"});",
+									"",
+									"pm.test(\"Error title of first error is 'Unknown error.'\", function () {",
+									"    pm.expect(firstError.title).to.equal('Unknown error.');",
+									"});",
+									"",
+									"pm.test(\"Error detail of first error is 'Request failed with status code 403'\", function () {",
+									"    pm.expect(firstError.detail).to.equal('Request failed with status code 403');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-APPLE-ID",
+								"type": "text",
+								"value": "invalid@example.com"
+							},
+							{
+								"key": "X-PASSWORD",
+								"type": "text",
+								"value": "invalid"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/ishealthy",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"ishealthy"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/ishealthy when X-APPLE-ID is missing",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									"const jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Payload contains error array with one item\", function () {",
+									"    pm.expect(jsonData.errors).to.be.an('array');",
+									"    pm.expect(jsonData.errors.length).to.equal(1);",
+									"});",
+									"",
+									"const firstError = jsonData.errors[0];",
+									"",
+									"pm.test(\"Error status of first error is '400'\", function () {",
+									"    pm.expect(firstError.status).to.equal('400');",
+									"});",
+									"",
+									"pm.test(\"Error source of first error is '/ishealthy'\", function () {",
+									"    pm.expect(firstError.source.pointer).to.equal('/ishealthy');",
+									"});",
+									"",
+									"pm.test(\"Error title of first error is 'Missing credentials.'\", function () {",
+									"    pm.expect(firstError.title).to.equal('Missing credentials.');",
+									"});",
+									"",
+									"pm.test(\"Error detail of first error is 'Header X-APPLE-ID and / or X-PASSWORD is missing.'\", function () {",
+									"    pm.expect(firstError.detail).to.equal('Header X-APPLE-ID and / or X-PASSWORD is missing.');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-PASSWORD",
+								"type": "text",
+								"value": "{{password}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/ishealthy",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"ishealthy"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/ishealthy when X-PASSWORD is missing",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									"const jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Payload contains error array with one item\", function () {",
+									"    pm.expect(jsonData.errors).to.be.an('array');",
+									"    pm.expect(jsonData.errors.length).to.equal(1);",
+									"});",
+									"",
+									"const firstError = jsonData.errors[0];",
+									"",
+									"pm.test(\"Error status of first error is '400'\", function () {",
+									"    pm.expect(firstError.status).to.equal('400');",
+									"});",
+									"",
+									"pm.test(\"Error source of first error is '/ishealthy'\", function () {",
+									"    pm.expect(firstError.source.pointer).to.equal('/ishealthy');",
+									"});",
+									"",
+									"pm.test(\"Error title of first error is 'Missing credentials.'\", function () {",
+									"    pm.expect(firstError.title).to.equal('Missing credentials.');",
+									"});",
+									"",
+									"pm.test(\"Error detail of first error is 'Header X-APPLE-ID and / or X-PASSWORD is missing.'\", function () {",
+									"    pm.expect(firstError.detail).to.equal('Header X-APPLE-ID and / or X-PASSWORD is missing.');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-APPLE-ID",
+								"type": "text",
+								"value": "{{appleId}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/ishealthy",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"ishealthy"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/ishealthy when X-APPLE-ID and X-PASSWORD are missing",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									"const jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Payload contains error array with one item\", function () {",
+									"    pm.expect(jsonData.errors).to.be.an('array');",
+									"    pm.expect(jsonData.errors.length).to.equal(1);",
+									"});",
+									"",
+									"const firstError = jsonData.errors[0];",
+									"",
+									"pm.test(\"Error status of first error is '400'\", function () {",
+									"    pm.expect(firstError.status).to.equal('400');",
+									"});",
+									"",
+									"pm.test(\"Error source of first error is '/ishealthy'\", function () {",
+									"    pm.expect(firstError.source.pointer).to.equal('/ishealthy');",
+									"});",
+									"",
+									"pm.test(\"Error title of first error is 'Missing credentials.'\", function () {",
+									"    pm.expect(firstError.title).to.equal('Missing credentials.');",
+									"});",
+									"",
+									"pm.test(\"Error detail of first error is 'Header X-APPLE-ID and / or X-PASSWORD is missing.'\", function () {",
+									"    pm.expect(firstError.detail).to.equal('Header X-APPLE-ID and / or X-PASSWORD is missing.');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/ishealthy",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"ishealthy"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "reminders/lists",
+			"item": [
+				{
+					"name": "/reminders/lists when correct X-APPLE-ID and X-PASSWORD are given",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response is an array\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.be.an('array');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-APPLE-ID",
+								"value": "{{appleId}}",
+								"type": "text"
+							},
+							{
+								"key": "X-PASSWORD",
+								"value": "{{password}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/reminders/lists",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"reminders",
+								"lists"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/reminders/lists when invalid X-APPLE-ID and X-PASSWORD are given",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 500\", function () {",
+									"    pm.response.to.have.status(500);",
+									"});",
+									"",
+									"const jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Payload contains error array with one item\", function () {",
+									"    pm.expect(jsonData.errors).to.be.an('array');",
+									"    pm.expect(jsonData.errors.length).to.equal(1);",
+									"});",
+									"",
+									"const firstError = jsonData.errors[0];",
+									"",
+									"pm.test(\"Error status of first error is '500'\", function () {",
+									"    pm.expect(firstError.status).to.equal('500');",
+									"});",
+									"",
+									"pm.test(\"Error source of first error is '/reminders/lists'\", function () {",
+									"    pm.expect(firstError.source.pointer).to.equal('/reminders/lists');",
+									"});",
+									"",
+									"pm.test(\"Error title of first error is 'Unknown error.'\", function () {",
+									"    pm.expect(firstError.title).to.equal('Unknown error.');",
+									"});",
+									"",
+									"pm.test(\"Error detail of first error is 'Request failed with status code 403'\", function () {",
+									"    pm.expect(firstError.detail).to.equal('Request failed with status code 403');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-APPLE-ID",
+								"type": "text",
+								"value": "invalid@example.com"
+							},
+							{
+								"key": "X-PASSWORD",
+								"type": "text",
+								"value": "invalid"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/reminders/lists",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"reminders",
+								"lists"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/reminders/lists when X-APPLE-ID is missing",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									"const jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Payload contains error array with one item\", function () {",
+									"    pm.expect(jsonData.errors).to.be.an('array');",
+									"    pm.expect(jsonData.errors.length).to.equal(1);",
+									"});",
+									"",
+									"const firstError = jsonData.errors[0];",
+									"",
+									"pm.test(\"Error status of first error is '400'\", function () {",
+									"    pm.expect(firstError.status).to.equal('400');",
+									"});",
+									"",
+									"pm.test(\"Error source of first error is '/reminders/lists'\", function () {",
+									"    pm.expect(firstError.source.pointer).to.equal('/reminders/lists');",
+									"});",
+									"",
+									"pm.test(\"Error title of first error is 'Missing credentials.'\", function () {",
+									"    pm.expect(firstError.title).to.equal('Missing credentials.');",
+									"});",
+									"",
+									"pm.test(\"Error detail of first error is 'Header X-APPLE-ID and / or X-PASSWORD is missing.'\", function () {",
+									"    pm.expect(firstError.detail).to.equal('Header X-APPLE-ID and / or X-PASSWORD is missing.');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-PASSWORD",
+								"type": "text",
+								"value": "{{password}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/reminders/lists",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"reminders",
+								"lists"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/reminders/lists when X-PASSWORD is missing",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									"const jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Payload contains error array with one item\", function () {",
+									"    pm.expect(jsonData.errors).to.be.an('array');",
+									"    pm.expect(jsonData.errors.length).to.equal(1);",
+									"});",
+									"",
+									"const firstError = jsonData.errors[0];",
+									"",
+									"pm.test(\"Error status of first error is '400'\", function () {",
+									"    pm.expect(firstError.status).to.equal('400');",
+									"});",
+									"",
+									"pm.test(\"Error source of first error is '/reminders/lists'\", function () {",
+									"    pm.expect(firstError.source.pointer).to.equal('/reminders/lists');",
+									"});",
+									"",
+									"pm.test(\"Error title of first error is 'Missing credentials.'\", function () {",
+									"    pm.expect(firstError.title).to.equal('Missing credentials.');",
+									"});",
+									"",
+									"pm.test(\"Error detail of first error is 'Header X-APPLE-ID and / or X-PASSWORD is missing.'\", function () {",
+									"    pm.expect(firstError.detail).to.equal('Header X-APPLE-ID and / or X-PASSWORD is missing.');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-APPLE-ID",
+								"type": "text",
+								"value": "{{appleId}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/reminders/lists",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"reminders",
+								"lists"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/reminders/lists when X-APPLE-ID and X-PASSWORD are missing",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									"const jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Payload contains error array with one item\", function () {",
+									"    pm.expect(jsonData.errors).to.be.an('array');",
+									"    pm.expect(jsonData.errors.length).to.equal(1);",
+									"});",
+									"",
+									"const firstError = jsonData.errors[0];",
+									"",
+									"pm.test(\"Error status of first error is '400'\", function () {",
+									"    pm.expect(firstError.status).to.equal('400');",
+									"});",
+									"",
+									"pm.test(\"Error source of first error is '/reminders/lists'\", function () {",
+									"    pm.expect(firstError.source.pointer).to.equal('/reminders/lists');",
+									"});",
+									"",
+									"pm.test(\"Error title of first error is 'Missing credentials.'\", function () {",
+									"    pm.expect(firstError.title).to.equal('Missing credentials.');",
+									"});",
+									"",
+									"pm.test(\"Error detail of first error is 'Header X-APPLE-ID and / or X-PASSWORD is missing.'\", function () {",
+									"    pm.expect(firstError.detail).to.equal('Header X-APPLE-ID and / or X-PASSWORD is missing.');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/reminders/lists",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"reminders",
+								"lists"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "reminders/lists/list",
+			"item": [
+				{
+					"name": "/reminders/lists/list when correct X-APPLE-ID and X-PASSWORD are given",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response is an object\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.be.an('object');",
+									"});",
+									"",
+									"pm.test(\"Response to have property 'id'\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('id');",
+									"});",
+									"",
+									"pm.test(\"Response to have property 'name'\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('name');",
+									"});",
+									"",
+									"pm.test(\"Response to have property 'reminders'\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('reminders');",
+									"});",
+									"",
+									"pm.test(\"Propert 'reminders' is an array\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.reminders).to.be.an('array');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-APPLE-ID",
+								"value": "{{appleId}}",
+								"type": "text"
+							},
+							{
+								"key": "X-PASSWORD",
+								"value": "{{password}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/reminders/lists/{{list}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"reminders",
+								"lists",
+								"{{list}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/reminders/lists/list when invalid X-APPLE-ID and X-PASSWORD are given",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 500\", function () {",
+									"    pm.response.to.have.status(500);",
+									"});",
+									"",
+									"const jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Payload contains error array with one item\", function () {",
+									"    pm.expect(jsonData.errors).to.be.an('array');",
+									"    pm.expect(jsonData.errors.length).to.equal(1);",
+									"});",
+									"",
+									"const firstError = jsonData.errors[0];",
+									"",
+									"pm.test(\"Error status of first error is '500'\", function () {",
+									"    pm.expect(firstError.status).to.equal('500');",
+									"});",
+									"",
+									"pm.test(\"Error source of first error is '/reminders/lists/<listname>'\", function () {",
+									"    pm.expect(firstError.source.pointer).to.equal('/reminders/lists/' + pm.variables.get(\"list\"));",
+									"});",
+									"",
+									"pm.test(\"Error title of first error is 'Unknown error.'\", function () {",
+									"    pm.expect(firstError.title).to.equal('Unknown error.');",
+									"});",
+									"",
+									"pm.test(\"Error detail of first error is 'Request failed with status code 403'\", function () {",
+									"    pm.expect(firstError.detail).to.equal('Request failed with status code 403');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-APPLE-ID",
+								"value": "invalid@example.com",
+								"type": "text"
+							},
+							{
+								"key": "X-PASSWORD",
+								"value": "invalid",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/reminders/lists/{{list}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"reminders",
+								"lists",
+								"{{list}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/reminders/lists/list when X-APPLE-ID is missing",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									"const jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Payload contains error array with one item\", function () {",
+									"    pm.expect(jsonData.errors).to.be.an('array');",
+									"    pm.expect(jsonData.errors.length).to.equal(1);",
+									"});",
+									"",
+									"const firstError = jsonData.errors[0];",
+									"",
+									"pm.test(\"Error status of first error is '400'\", function () {",
+									"    pm.expect(firstError.status).to.equal('400');",
+									"});",
+									"",
+									"pm.test(\"Error source of first error is '/reminders/lists/<listname>'\", function () {",
+									"    pm.expect(firstError.source.pointer).to.equal('/reminders/lists/' + pm.variables.get(\"list\"));",
+									"});",
+									"",
+									"pm.test(\"Error title of first error is 'Missing credentials.'\", function () {",
+									"    pm.expect(firstError.title).to.equal('Missing credentials.');",
+									"});",
+									"",
+									"pm.test(\"Error detail of first error is 'Header X-APPLE-ID and / or X-PASSWORD is missing.'\", function () {",
+									"    pm.expect(firstError.detail).to.equal('Header X-APPLE-ID and / or X-PASSWORD is missing.');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-PASSWORD",
+								"type": "text",
+								"value": "{{password}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/reminders/lists/{{list}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"reminders",
+								"lists",
+								"{{list}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/reminders/lists/list when X-PASSWORD is missing",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									"const jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Payload contains error array with one item\", function () {",
+									"    pm.expect(jsonData.errors).to.be.an('array');",
+									"    pm.expect(jsonData.errors.length).to.equal(1);",
+									"});",
+									"",
+									"const firstError = jsonData.errors[0];",
+									"",
+									"pm.test(\"Error status of first error is '400'\", function () {",
+									"    pm.expect(firstError.status).to.equal('400');",
+									"});",
+									"",
+									"pm.test(\"Error source of first error is '/reminders/lists/<listname>'\", function () {",
+									"    pm.expect(firstError.source.pointer).to.equal('/reminders/lists/' + pm.variables.get(\"list\"));",
+									"});",
+									"",
+									"pm.test(\"Error title of first error is 'Missing credentials.'\", function () {",
+									"    pm.expect(firstError.title).to.equal('Missing credentials.');",
+									"});",
+									"",
+									"pm.test(\"Error detail of first error is 'Header X-APPLE-ID and / or X-PASSWORD is missing.'\", function () {",
+									"    pm.expect(firstError.detail).to.equal('Header X-APPLE-ID and / or X-PASSWORD is missing.');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-APPLE-ID",
+								"type": "text",
+								"value": "{{appleId}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/reminders/lists/{{list}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"reminders",
+								"lists",
+								"{{list}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/reminders/lists/list when X-APPLE-ID and X-PASSWORD are missing",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									"const jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Payload contains error array with one item\", function () {",
+									"    pm.expect(jsonData.errors).to.be.an('array');",
+									"    pm.expect(jsonData.errors.length).to.equal(1);",
+									"});",
+									"",
+									"const firstError = jsonData.errors[0];",
+									"",
+									"pm.test(\"Error status of first error is '400'\", function () {",
+									"    pm.expect(firstError.status).to.equal('400');",
+									"});",
+									"",
+									"pm.test(\"Error source of first error is '/reminders/lists/<listname>'\", function () {",
+									"    pm.expect(firstError.source.pointer).to.equal('/reminders/lists/' + pm.variables.get(\"list\"));",
+									"});",
+									"",
+									"pm.test(\"Error title of first error is 'Missing credentials.'\", function () {",
+									"    pm.expect(firstError.title).to.equal('Missing credentials.');",
+									"});",
+									"",
+									"pm.test(\"Error detail of first error is 'Header X-APPLE-ID and / or X-PASSWORD is missing.'\", function () {",
+									"    pm.expect(firstError.detail).to.equal('Header X-APPLE-ID and / or X-PASSWORD is missing.');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-APPLE-ID",
+								"type": "text",
+								"value": "{{appleId}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/reminders/lists/{{list}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"reminders",
+								"lists",
+								"{{list}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/reminders/lists/list when list does not exist",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 500\", function () {",
+									"    pm.response.to.have.status(500);",
+									"});",
+									"",
+									"const jsonData = pm.response.json();",
+									"",
+									"pm.test(\"Payload contains error array with one item\", function () {",
+									"    pm.expect(jsonData.errors).to.be.an('array');",
+									"    pm.expect(jsonData.errors.length).to.equal(1);",
+									"});",
+									"",
+									"const firstError = jsonData.errors[0];",
+									"",
+									"pm.test(\"Error status of first error is '500'\", function () {",
+									"    pm.expect(firstError.status).to.equal('500');",
+									"});",
+									"",
+									"pm.test(\"Error source of first error is '/reminders/lists/listDoesNotExist'\", function () {",
+									"    pm.expect(firstError.source.pointer).to.equal('/reminders/lists/listDoesNotExist');",
+									"});",
+									"",
+									"pm.test(\"Error title of first error is 'Unknown error.'\", function () {",
+									"    pm.expect(firstError.title).to.equal('Unknown error.');",
+									"});",
+									"",
+									"pm.test(\"Error detail of first error is 'Unable to determine list ID for list with name 'listDoesNotExist'.'\", function () {",
+									"    pm.expect(firstError.detail).to.equal('Unable to determine list ID for list with name \\'listDoesNotExist\\'.');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-APPLE-ID",
+								"type": "text",
+								"value": "{{appleId}}"
+							},
+							{
+								"key": "X-PASSWORD",
+								"type": "text",
+								"value": "{{password}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/reminders/lists/listDoesNotExist",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"reminders",
+								"lists",
+								"listDoesNotExist"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
 }
