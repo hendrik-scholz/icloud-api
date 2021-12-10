@@ -20,14 +20,21 @@ import expectedResultOneCollectionContainingOneReminderWithAnAlarmLocationLeavin
 import oneCollectionContainingTwoReminders from './oneCollectionContainingTwoReminders.json';
 import expectedResultOneCollectionContainingTwoReminders from './expectedResultOneCollectionContainingTwoReminders.json';
 
+import emptyResponse from './emptyResponse.json';
+import expectedResultEmptyResponse from './expectedResultEmptyResponse.json';
+import oneReminder from './oneReminder.json';
+import expectedResultOneReminder from './expectedResultOneReminder.json';
+import twoReminders from './twoReminders.json';
+import expectedResultTwoReminders from './expectedResultTwoReminders.json';
+
 describe('Response Mapper', () => {
+  let responseMapper: ResponseMapper;
+
+  before('create new ResponseMapper', () => {
+    responseMapper = new ResponseMapper();
+  });
+
   describe('getReminderFromResponseData', () => {
-    let responseMapper: ResponseMapper;
-
-    before('create new ResponseMapper', () => {
-      responseMapper = new ResponseMapper();
-    });
-
     it('should test an empty list is mapped correctly', (done) => {
       responseMapper.getReminderFromResponseData(emptyList)
       .then((reminder) => {
@@ -104,6 +111,35 @@ describe('Response Mapper', () => {
       responseMapper.getReminderFromResponseData(oneCollectionContainingTwoReminders)
       .then((reminder) => {
         expect(reminder).to.deep.equal(expectedResultOneCollectionContainingTwoReminders);
+        done();
+      })
+      .catch(done);
+    });
+  });
+
+  describe('getReminders', () => {
+    it('should test an empty response is mapped correctly', (done) => {
+      responseMapper.getReminders(emptyResponse)
+      .then((reminder) => {
+        expect(reminder).to.deep.equal(expectedResultEmptyResponse)
+        done();
+      })
+      .catch(done);
+    });
+
+    it('should test a response with one reminder is mapped correctly', (done) => {
+      responseMapper.getReminders(oneReminder)
+      .then((reminder) => {
+        expect(reminder).to.deep.equal(expectedResultOneReminder)
+        done();
+      })
+      .catch(done);
+    });
+
+    it('should test a response with two reminders is mapped correctly', (done) => {
+      responseMapper.getReminders(twoReminders)
+      .then((reminder) => {
+        expect(reminder).to.deep.equal(expectedResultTwoReminders)
         done();
       })
       .catch(done);

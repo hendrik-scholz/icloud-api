@@ -1,0 +1,17 @@
+{
+  "id": "n/a",
+  "name": "n/a",
+  "reminders": [{
+    "title": "Reminder #1",
+    "description": "Lorem ipsum dolor sit amet.",
+    "priority": null,
+    "locationName": null,
+    "address": null,
+    "latitude": null,
+    "longitude": null,
+    "radius": null,
+    "proximity": null,
+    "alarm": null,
+    "completed": false
+  }]
+}

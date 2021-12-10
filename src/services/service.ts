@@ -7,7 +7,7 @@ export interface Service {
 
   getRemindersLists(username: string, password: string): Promise<Array<List>>;
 
-  getRemindersListsList(): Promise<void>;
+  getRemindersListsList(username: string, password: string, listName: string): Promise<List>;
 
   postRemindersListsList(): Promise<void>;
 

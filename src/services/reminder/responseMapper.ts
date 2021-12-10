@@ -24,6 +24,16 @@ export class ResponseMapper {
     return Promise.resolve(mappedResponse);
   }
 
+  getReminders(reminders: Array<any>): Promise<List> {
+    return Promise.resolve(
+      {
+        id: 'n/a',
+        name: 'n/a',
+        reminders: reminders.map(reminder => this.mapReminder(reminder)),
+      },
+    );
+  }
+
   private mapReminder(reminder: any): Reminder {
     return {
       title: this.getTitle(reminder),

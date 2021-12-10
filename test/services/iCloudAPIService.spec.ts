@@ -17,13 +17,13 @@ describe('iCloud API Service', () => {
           token: 'token',
         });
       }
-    };
+    }
 
-    logout(username: string, password: string): void {};
+    logout(username: string, password: string): void {}
   };
 
   class ReminderServiceMock implements ReminderService {
-    getRemindersLists(token: Credentials): Promise<Array<List>> {
+    getRemindersLists(credentials: Credentials): Promise<Array<List>> {
       return Promise.resolve([{
         'id': '00000000-0000-0000-0000-000000000001',
         'name': 'Reminders V1.0.0',
@@ -41,7 +41,27 @@ describe('iCloud API Service', () => {
           'completed': false
         }]
       }]);
-    };
+    }
+
+    getRemindersListsList(token: Credentials, listName: string): Promise<List> {
+      return Promise.resolve({
+        'id': '00000000-0000-0000-0000-000000000001',
+        'name': 'Reminders V1.0.0',
+        'reminders': [{
+          'title': 'Reminder #1',
+          'description': 'Lorem ipsum dolor sit amet.',
+          'priority': null,
+          'locationName': null,
+          'address': null,
+          'latitude': null,
+          'longitude': null,
+          'radius': null,
+          'proximity': null,
+          'alarm': null,
+          'completed': false
+        }]
+      });
+    }
   };
 
   const iCloudApiService = new ICloudAPIService(new AccessServiceMock(), new ReminderServiceMock());
@@ -104,9 +124,31 @@ describe('iCloud API Service', () => {
 
   describe('getRemindersListsList', () => {
     it('should test that the method returns if not implemented', (done) => {
-      iCloudApiService.getRemindersListsList()
-        .then(done)
-        .catch(error => done(error));
+      iCloudApiService.getRemindersListsList('', '', '')
+      .then((data) => {
+        expect(data).to.be.an('object');
+        expect(data.id).to.equal('00000000-0000-0000-0000-000000000001');
+        expect(data.name).to.equal('Reminders V1.0.0');
+
+        const reminders = data['reminders'];
+        expect(reminders.length).to.equal(1);
+
+        const firstReminder = reminders[0];
+        expect(firstReminder.title).to.equal('Reminder #1');
+        expect(firstReminder.description).to.equal('Lorem ipsum dolor sit amet.');
+
+        done();
+      })
+      .catch(error => done(error));
+    });
+
+    it('should test that an error is raised when retrieving token is not successful', (done) => {
+      iCloudApiService.getRemindersListsList('error', '', '')
+        .then(() => done('An error was expected, but no error was raised.'))
+        .catch((error) => {
+          expect(error).to.equal('An error occurred.');
+          done();
+        });
     });
   });
 

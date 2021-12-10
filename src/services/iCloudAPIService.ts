@@ -35,8 +35,12 @@ export class ICloudAPIService implements Service {
         .catch(error => reject(error)));
   }
 
-  getRemindersListsList(): Promise<void> {
-    return new Promise((resolve, reject) => resolve());
+  getRemindersListsList(username: string, password: string, list: string): Promise<List> {
+    return new Promise((resolve, reject) =>
+      this.accessService
+      .getToken(username, password)
+        .then(token => resolve(this.reminderService.getRemindersListsList(token, list)))
+        .catch(error => reject(error)));
   }
 
   postRemindersListsList(): Promise<void> {
